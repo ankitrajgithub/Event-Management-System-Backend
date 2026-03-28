@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const { getEvents, getEventById, createEvent, updateEvent, deleteEvent } = require('../controllers/eventController');
-const { protect, admin } = require('../middleware/auth');
+import { getEvents, getEventById, createEvent, updateEvent, deleteEvent } from '../controllers/eventController.js';
+import { protect, admin } from '../middleware/auth.js';
 
 router.get('/', getEvents);
 router.get('/:id', getEventById);

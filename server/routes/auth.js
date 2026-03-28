@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const { register, login, verifyOTP } = require('../controllers/authController');
+import { register, login, verifyOTP } from '../controllers/authController.js';
 
 router.post('/register', register);
 router.post('/login', login);

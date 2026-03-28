@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const bcrypt = require('bcryptjs');
-const User = require('./models/User');
-const Event = require('./models/Event');
-const Booking = require('./models/Booking');
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import bcrypt from 'bcryptjs';
+import User from './models/User.js';
+import Event from './models/Event.js';
+import Booking from './models/Booking.js';
 import dns from "node:dns/promises";
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
 

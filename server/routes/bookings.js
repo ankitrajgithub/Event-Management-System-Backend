@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const { bookEvent, confirmBooking, getMyBookings, cancelBooking, sendBookingOTP } = require('../controllers/bookingController');
-const { protect, admin } = require('../middleware/auth');
+import { bookEvent, confirmBooking, getMyBookings, cancelBooking, sendBookingOTP } from '../controllers/bookingController.js';
+import { protect, admin } from '../middleware/auth.js';
 
 router.post('/send-otp', protect, sendBookingOTP);
 router.post('/', protect, bookEvent);

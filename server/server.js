@@ -1,16 +1,15 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import dotenv from 'dotenv';
 import dns from "node:dns/promises";
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
-
 dotenv.config();
 
-const authRoutes = require('./routes/auth');
-const eventRoutes = require('./routes/events');
-const bookingRoutes = require('./routes/bookings');
+import authRoutes from './routes/auth.js';
+import eventRoutes from './routes/events.js';
+import bookingRoutes from './routes/bookings.js';
 
 const app = express();
 
