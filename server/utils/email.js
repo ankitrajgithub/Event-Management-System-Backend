@@ -20,7 +20,7 @@ const sendBookingEmail = async (userEmail, userName, eventTitle) => {
             html: `
         <h2>Hi ${userName}!</h2>
         <p>Your booking for the event <strong>${eventTitle}</strong> is successfully confirmed.</p>
-        <p>Thank you for choosing Eventora.</p>
+        <p>Thank you for choosing Event Horizon.</p>
       `
         };
         await transporter.sendMail(mailOptions);
