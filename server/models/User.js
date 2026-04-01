@@ -8,8 +8,6 @@ const userSchema = new mongoose.Schema({
     isVerified: { type: Boolean, default: false }
 }, { timestamps: true });
 
-const User= mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
-module.exports={
-    User
-}
+export default User;

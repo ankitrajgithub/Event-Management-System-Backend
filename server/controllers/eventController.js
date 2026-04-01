@@ -1,6 +1,6 @@
-const Event = require('../models/Event');
+import Event from '../models/Event.js';
 
-exports.getEvents = async (req, res) => {
+export const getEvents = async (req, res) => {
     try {
         const filters = {};
         if (req.query.category) filters.category = req.query.category;
@@ -13,7 +13,7 @@ exports.getEvents = async (req, res) => {
     }
 };
 
-exports.getEventById = async (req, res) => {
+export const getEventById = async (req, res) => {
     try {
         const event = await Event.findById(req.params.id).populate('createdBy', 'name email');
         if (!event) return res.status(404).json({ message: 'Event not found' });
@@ -23,7 +23,7 @@ exports.getEventById = async (req, res) => {
     }
 };
 
-exports.createEvent = async (req, res) => {
+export const createEvent = async (req, res) => {
     try {
         const { title, description, date, location, category, totalSeats, ticketPrice, image } = req.body;
         const event = await Event.create({
@@ -44,7 +44,7 @@ exports.createEvent = async (req, res) => {
     }
 };
 
-exports.updateEvent = async (req, res) => {
+export const updateEvent = async (req, res) => {
     try {
         const event = await Event.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!event) return res.status(404).json({ message: 'Event not found' });
@@ -54,7 +54,7 @@ exports.updateEvent = async (req, res) => {
     }
 };
 
-exports.deleteEvent = async (req, res) => {
+export const deleteEvent = async (req, res) => {
     try {
         const event = await Event.findByIdAndDelete(req.params.id);
         if (!event) return res.status(404).json({ message: 'Event not found' });

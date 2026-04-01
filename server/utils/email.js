@@ -59,4 +59,4 @@ const sendOTPEmail = async (userEmail, otp, type) => {
     }
 };
 
-module.exports = { sendBookingEmail, sendOTPEmail };
+export { sendBookingEmail, sendOTPEmail };

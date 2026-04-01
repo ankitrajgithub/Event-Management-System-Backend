@@ -9,4 +9,4 @@ router.put('/:id/confirm', protect, admin, confirmBooking);
 router.get('/my', protect, getMyBookings);
 router.delete('/:id', protect, cancelBooking);
 
-module.exports = router;
+export default router;

@@ -1,11 +1,11 @@
-const Booking = require('../models/Booking');
-const Event = require('../models/Event');
-const OTP = require('../models/OTP');
-const { sendBookingEmail, sendOTPEmail } = require('../utils/email');
+import Booking from '../models/Booking.js';
+import Event from '../models/Event.js';
+import OTP from '../models/OTP.js';
+import { sendBookingEmail, sendOTPEmail } from '../utils/email.js';
 
 const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
 
-exports.sendBookingOTP = async (req, res) => {
+export const sendBookingOTP = async (req, res) => {
     try {
         const otp = generateOTP();
         await OTP.findOneAndDelete({ email: req.user.email, action: 'event_booking' });
@@ -17,7 +17,7 @@ exports.sendBookingOTP = async (req, res) => {
     }
 };
 
-exports.bookEvent = async (req, res) => {
+export const bookEvent = async (req, res) => {
     try {
         const { eventId, otp } = req.body;
 
@@ -52,7 +52,7 @@ exports.bookEvent = async (req, res) => {
     }
 };
 
-exports.confirmBooking = async (req, res) => {
+export const confirmBooking = async (req, res) => {
     try {
         const { paymentStatus } = req.body; // 'paid' or 'not_paid'
         const booking = await Booking.findById(req.params.id).populate('userId').populate('eventId');
@@ -83,7 +83,7 @@ exports.confirmBooking = async (req, res) => {
     }
 };
 
-exports.getMyBookings = async (req, res) => {
+export const getMyBookings = async (req, res) => {
     try {
         const bookings = req.user.role === 'admin'
             ? await Booking.find().populate('eventId').populate('userId', 'name email').sort({ createdAt: -1 })
@@ -94,7 +94,7 @@ exports.getMyBookings = async (req, res) => {
     }
 };
 
-exports.cancelBooking = async (req, res) => {
+export const cancelBooking = async (req, res) => {
     try {
         const booking = await Booking.findById(req.params.id);
         if (!booking) return res.status(404).json({ message: 'Booking not found' });

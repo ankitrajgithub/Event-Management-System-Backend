@@ -1,8 +1,8 @@
-const User = require('../models/User');
-const OTP = require('../models/OTP');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { sendOTPEmail } = require('../utils/email');
+import User from '../models/User.js';
+import OTP from '../models/OTP.js';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { sendOTPEmail } from '../utils/email.js';
 
 const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
 
@@ -10,7 +10,7 @@ const generateToken = (id, role) => {
     return jwt.sign({ id, role }, process.env.JWT_SECRET, { expiresIn: '30d' });
 };
 
-exports.register = async (req, res) => {
+export const register = async (req, res) => {
     try {
         const { name, email, password, role } = req.body;
         let user = await User.findOne({ email });
@@ -40,7 +40,7 @@ exports.register = async (req, res) => {
     }
 };
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
@@ -69,7 +69,7 @@ exports.login = async (req, res) => {
     }
 };
 
-exports.verifyOTP = async (req, res) => {
+export const verifyOTP = async (req, res) => {
     try {
         const { email, otp } = req.body;
         const validOTP = await OTP.findOne({ email, otp, action: 'account_verification' });

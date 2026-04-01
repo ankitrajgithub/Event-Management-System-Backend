@@ -6,4 +6,4 @@ router.post('/register', register);
 router.post('/login', login);
 router.post('/verify-otp', verifyOTP);
 
-module.exports = router;
+export default router;

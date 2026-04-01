@@ -9,4 +9,4 @@ router.post('/', protect, admin, createEvent);
 router.put('/:id', protect, admin, updateEvent);
 router.delete('/:id', protect, admin, deleteEvent);
 
-module.exports = router;
+export default router;
